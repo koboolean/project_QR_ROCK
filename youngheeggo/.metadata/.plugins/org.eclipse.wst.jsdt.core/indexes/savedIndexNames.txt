@@ -1,8 +1,0 @@
-INDEX VERSION 1.4+C:\Users\USER\Desktop\project_QROCK\youngheeggo\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-3027087537.index
-1987636224.index
-2387604707.index
-4185721891.index
-624655279.index
-357209922.index
-1193787840.index
