@@ -149,7 +149,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="C:\Users\USER\Desktop\project_QROCK\QRock\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\USER\Desktop\project_QROCK\QRock\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\QrLockDoor" path="/QrLockDoor" reloadable="true" source="org.eclipse.jst.jee.server:QrLockDoor">
+      <Context docBase="C:\Users\USER\Desktop\project_QROCK1\QRock\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\USER\Desktop\project_QROCK1\QRock\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\QrLockDoor" path="/QrLockDoor" reloadable="true" source="org.eclipse.jst.jee.server:QrLockDoor">
   <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory" maxActive="500" name="jdbc/jsptest" password="1234" type="javax.sql.DataSource" url="jdbc:oracle:thin:@203.244.145.218:1521:XE" username="QRock"/> 
   </Context></Host>
     </Engine>
