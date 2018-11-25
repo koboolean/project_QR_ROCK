@@ -1,0 +1,8 @@
+package vo;
+
+public class User {
+	private String User_Device_ID;
+	private String QR_url;
+	
+	
+}

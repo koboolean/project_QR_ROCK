@@ -1,0 +1,8 @@
+package vo;
+
+public class QR {
+	private String QR_Code;
+	private String Mac_Add;
+	
+
+}
