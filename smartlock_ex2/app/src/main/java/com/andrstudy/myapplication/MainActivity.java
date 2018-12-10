@@ -34,15 +34,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //android_ID = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
+
+
+        /*android_ID = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);*/
 
         tv=(TextView)findViewById(R.id.android_ID);
         tv.setText(android_ID);
 
         ConnectServer();
-
-        Intent mac_intent = new Intent(MainActivity.this,Mac_address.class);
-        startActivity(mac_intent);
     }
 
 
@@ -68,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                         JSONArray jArr = new JSONArray(s);
                         JSONObject jsonObject = new JSONObject();
                         jsonObject=jArr.getJSONObject(0);
+
 
                         intent.putExtra("User_Device_Id", jsonObject.getString(android_ID));
 
