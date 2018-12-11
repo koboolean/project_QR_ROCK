@@ -42,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
         tv.setText(android_ID);
 
         ConnectServer();
+
+        Intent mac_Intent = new Intent(this, Mac_address.class);
+        startActivity(mac_Intent);
     }
 
 
