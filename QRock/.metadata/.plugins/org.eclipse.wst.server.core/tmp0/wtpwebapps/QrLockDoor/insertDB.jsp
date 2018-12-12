@@ -8,31 +8,46 @@
 <%@ page import="org.json.simple.*"%>
 <%@ page import ="static db.JdbcUtil.*" %>
 <%
-	String User_QR_Device_Id=request.getParameter("User_QR_Device_Id");
-	String User_QR_Code=request.getParameter("User_QR_Code");
-	String User_Phone=request.getParameter("User_Phone");
-	int insertCount = 0;
 	JSONArray arr = new JSONArray(); //JSON 배열에 캡슐화하는 느낌으로 안드로이드랑 통신
-	
-try{
 	JSONObject obj=new JSONObject();
 	
-	sql="insert into QRock(User_QR_Device_Id,User_QR_Code,User_Phone) values(?,?,?)";
-	pstmt = con.prepareStatement(sql);
-	pstmt.setString(1, User_QR_Code);
-	pstmt.setString(2, User_QR_Code);
-	pstmt.setString(3, User_Phone);
-	insertCount=pstmt.executeUpdate();
+	String user_Device_Id= "지원3";/*  request.getParameter("user_Device_Id"); */
+	String user_QR_Code=request.getParameter("user_QR_Code");
+	String user_Phone=request.getParameter("user_Phone");
+	String user_Password=request.getParameter("user_Password");
+	String mac_Add=request.getParameter("mac_add");
 	
-	obj.put("insertCount",insertCount);
+	
+	 int insertcount = 0;
+	
+	
+	
+try{
+	
+	
+	
+	//sql="insert into QRock(User_QR_Device_Id,User_QR_Code,User_Phone) values(?,?,?)";
+	sql="insert into qr_user(user_Device_Id, user_QR_Code, user_Phone, user_Password, user_Admin) values(?,?,?,?,?)";
+	pstmt = con.prepareStatement(sql);
+	pstmt.setString(1, user_Device_Id);
+	pstmt.setString(2, user_Device_Id);
+	pstmt.setString(3, user_QR_Code);
+	pstmt.setString(4, user_Phone);
+	pstmt.setString(5, user_Password);
+	pstmt.setInt(6,1);
+	
+	insertcount=pstmt.executeUpdate();
+	
+	obj.put("insertcount",insertcount);
+	
 	
 	if (obj != null) {
-		arr.add(obj);
+		obj.put("user_Device_Id",user_Device_Id);
+		
 	}else{
-		arr.add("?");	//디비에서 해당 값을 찾지못하거나 애트리뷰트가 비어있을 때
+		obj.put("user_Device_Id","?");
 	}
-	
-	
+	 
 } catch (SQLException se) {
 	out.println(se.getMessage());
 } finally {
@@ -43,4 +58,6 @@ try{
 	if (con != null)
 		con.close();
 }
+
 %>
+<%=obj.toJSONString() %>

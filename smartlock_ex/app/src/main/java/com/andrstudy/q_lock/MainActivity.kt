@@ -33,10 +33,10 @@ class MainActivity : AppCompatActivity() {
             // 요청할 페이지 주소
             var builder = Request.Builder()
 
-            var url = builder.url("http://203.244.145.218:8181/QrLockDoor/selectDB.jsp")
+            var url = builder.url("http://203.244.145.218:8181/QrLockDoor/insertDB.jsp")
 
             var bodyBuilder = FormBody.Builder()
-            bodyBuilder.add("User_Device_Id", android_ID)
+            bodyBuilder.add("user_Device_Id", android_ID)
 
             var body = bodyBuilder.build()
             var post = url.post(body)
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
     inner class CallBack1 : Callback{
         // 서버와의 통신이 실패되었을 때
         override fun onFailure(call: Call, e: IOException) {
-            textView1.text = "현재 통신이 원활하지 않습니다."
+           /* textView1.text = "현재 통신이 원활하지 않습니다."*/
         }
         // 서버와의 통신이 잘 마무리 되었을 때
         override fun onResponse(call: Call, response: Response) {
@@ -58,12 +58,9 @@ class MainActivity : AppCompatActivity() {
             Log.i("log", result)
             runOnUiThread{
                 var obj = JSONObject(result)
-                var id = obj.getString("id")
-                var code = obj.getString("code")
-                var phone = obj.getString("phone")
-
-                if(!id.equals("?")){
-                    textView2.text = id + code + phone
+                var user_Device_Id = obj.getString("user_Device_Id")
+                if(!user_Device_Id.equals("?")){
+                    textView1.text = "값을 성공적으로 넣었습니다."
                 }else{
                     textView3.text = "아이디 혹은 비밀번호를 확인해주세요."
                 }

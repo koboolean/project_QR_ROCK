@@ -10,36 +10,34 @@
 <%@ page import="static db.JdbcUtil.*"%>
 <%
 	//안드로이드에서 던지는 값 여기서 받음
-	String User_Device_Id=request.getParameter("User_Device_Id");
+	String user_Device_Id=request.getParameter("user_Device_Id");
 	/* String User_QR_Code=request.getParameter("User_QR_Code");
 	String User_Phone=request.getParameter("User_Phone"); */
 	 
-	
+	System.out.println(user_Device_Id);
 	int insertCount = 0;
 	/* JSONArray arr = new JSONArray(); //JSON 배열에 캡슐화하는 느낌으로 안드로이드랑 통신 */
 	JSONObject obj=new JSONObject();
 try{
-	sql="select * from qr_user where User_Device_Id=?";
+	sql="select * from qr_user where user_Device_Id=?";
 	
 	pstmt = con.prepareStatement(sql);
-	pstmt.setString(1, User_Device_Id);
+	pstmt.setString(1, user_Device_Id);
 	
 	rs = pstmt.executeQuery();
 	
 	
 	if(rs.next()){
 		
+		String user_QR_Code=rs.getString("user_QR_Code");
+		String user_Phone=rs.getString("user_Phone"); 
 		
-		String id=rs.getString("User_Device_Id");
-		String code=rs.getString("User_QR_Code");
-		String phone=rs.getString("User_Phone"); 
-		
-		obj.put("id",id);
-		obj.put("code", code);
-		obj.put("phone", phone);
+		obj.put("user_Device_Id",user_Device_Id);
+		obj.put("user_QR_Code", user_QR_Code);
+		obj.put("user_Phone", user_Phone);
 		
 	}else{
-		obj.put("id","?");
+		obj.put("id","?");	
 	}
 	
 } catch (SQLException se) {
