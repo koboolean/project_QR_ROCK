@@ -7,27 +7,35 @@ import java.io.IOException
 import android.widget.Toast
 import android.provider.Settings;
 import android.util.Log
+import android.widget.TextView
 
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.*
 import org.json.JSONArray
 import org.json.JSONObject
+import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
     var android_ID  : String? = null
-    var intent :
+    var textView1 : TextView? = null
+    var intent1 : Intent? = null
     var intent2 : Intent? = null // 값이 없다 == Mac_Address
+    var user_Device_Id : String?=null
+//    var user_qr_code : String?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Thread.sleep(1500)
-        intent = Intent(this, Lock_Main::class.java)
-        intent2 = Intent(this, Mac_address::class.java)
+
+
+        textView1 = findViewById<TextView>(R.id.textView1)
+        android_ID=findViewById<TextView>(R.id.android_ID).toString()
 
         android_ID = Settings.Secure.getString(this.getContentResolver(),Settings.Secure.ANDROID_ID)
 
         var thread = NetworkThread()
         thread.start()
+
     }
 
     inner class NetworkThread : Thread(){
@@ -36,7 +44,7 @@ class MainActivity : AppCompatActivity() {
             // 요청할 페이지 주소
             var builder = Request.Builder()
 
-            var url = builder.url("http://203.244.145.218:8181/QrLockDoor/insertDB.jsp")
+            var url = builder.url("http://203.244.145.214:8089/QrLockDoor/selectDB.jsp")
 
             var bodyBuilder = FormBody.Builder()
             bodyBuilder.add("user_Device_Id", android_ID)
@@ -49,10 +57,12 @@ class MainActivity : AppCompatActivity() {
             client.newCall(request).enqueue(CallBack1())
         }
     }
+
     inner class CallBack1 : Callback{
         // 서버와의 통신이 실패되었을 때
         override fun onFailure(call: Call, e: IOException) {
-           /* textView1.text = "현재 통신이 원활하지 않습니다."*/
+
+
         }
         // 서버와의 통신이 잘 마무리 되었을 때
         override fun onResponse(call: Call, response: Response) {
@@ -61,10 +71,16 @@ class MainActivity : AppCompatActivity() {
             Log.i("log", result)
             runOnUiThread{
                 var obj = JSONObject(result)
-                var user_Device_Id = obj.getString("user_Device_Id")
 
+                user_Device_Id = obj.getString("user_Device_Id")
+
+                intent1 = Intent(this@MainActivity, Lock_Main::class.java)
+                intent2 = Intent(this@MainActivity, Mac_address::class.java)
                 if(!user_Device_Id.equals("?")){
-                    startActivity(intent)
+
+                    intent1?.putExtra("USER_QR_CODE",obj.getString("user_QR_Code"))
+
+                    startActivity(intent1)
                 }else{
                     startActivity(intent2)
                 }

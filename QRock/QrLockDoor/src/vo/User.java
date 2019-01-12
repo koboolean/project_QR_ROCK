@@ -4,8 +4,9 @@ public class User {
 	private String user_Device_ID;
 	private String user_QR_Code;
 	private String user_Phone;
-	private int user_Password;
+	private String user_Password;
 	private int user_admin;
+	private String user_Name;
 	
 	public User() {
 		super();
@@ -29,17 +30,23 @@ public class User {
 	public void setUser_Phone(String user_Phone) {
 		this.user_Phone = user_Phone;
 	}
-	public int getUser_Password() {
-		return user_Password;
-	}
-	public void setUser_Password(int user_Password) {
-		this.user_Password = user_Password;
-	}
 	public int getUser_admin() {
 		return user_admin;
 	}
 	public void setUser_admin(int user_admin) {
 		this.user_admin = user_admin;
+	}
+
+	public String getUser_Name() {
+		return user_Name;
+	}
+
+	public void setUser_Name(String user_Name) {
+		this.user_Name = user_Name;
+	}
+
+	public void setUser_Password(String user_Password) {
+		this.user_Password = user_Password;
 	}
 	
 	

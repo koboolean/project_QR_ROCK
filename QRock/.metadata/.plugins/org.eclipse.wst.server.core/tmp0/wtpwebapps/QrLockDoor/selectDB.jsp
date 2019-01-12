@@ -14,7 +14,7 @@
 	/* String User_QR_Code=request.getParameter("User_QR_Code");
 	String User_Phone=request.getParameter("User_Phone"); */
 	 
-	System.out.println(user_Device_Id);
+	
 	int insertCount = 0;
 	/* JSONArray arr = new JSONArray(); //JSON 배열에 캡슐화하는 느낌으로 안드로이드랑 통신 */
 	JSONObject obj=new JSONObject();
@@ -37,7 +37,7 @@ try{
 		obj.put("user_Phone", user_Phone);
 		
 	}else{
-		obj.put("id","?");	
+		obj.put("user_Device_Id","?");
 	}
 	
 } catch (SQLException se) {

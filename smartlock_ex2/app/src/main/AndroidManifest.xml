@@ -17,7 +17,7 @@
         <activity android:name=".Mac_address" />
         <activity android:name=".Scanner" />
         <activity android:name=".Server" />
-        <activity android:name=".Lock_Main" />
+        <activity android:name=".Lock_Main" ></activity>
         <activity android:name=".Management"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>

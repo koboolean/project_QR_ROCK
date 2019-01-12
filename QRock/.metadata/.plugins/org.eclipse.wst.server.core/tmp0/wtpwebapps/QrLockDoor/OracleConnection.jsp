@@ -3,7 +3,7 @@
 <%
 	
 //해당 디비주소를 입력하면 어디서든 작업가능
-	String DB_URL = "jdbc:oracle:thin:@203.244.145.218:1521:XE";
+	String DB_URL = "jdbc:oracle:thin:@203.244.145.214:1521:XE";
 	String DB_USER = "QRock";
 	String DB_PASSWORD = "1234";
 
